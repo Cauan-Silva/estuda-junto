@@ -1,0 +1,21 @@
+# Node
+node_modules/
+frontend/dist/
+
+# Telas compiladas que o Docker copia para dentro do Go
+backend/internal/web/dist/*
+!backend/internal/web/dist/.gitkeep
+
+# Go
+backend/estuda-junto
+*.exe
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Variáveis locais
+.env

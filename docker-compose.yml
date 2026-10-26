@@ -1,0 +1,31 @@
+# Sobe o banco e o servidor para testar tudo junto:  docker compose up --build
+# Depois abra http://localhost:8080
+services:
+  banco:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: estuda
+      POSTGRES_PASSWORD: estuda
+      POSTGRES_DB: estuda
+    ports:
+      - "5432:5432"
+    volumes:
+      - dados:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U estuda"]
+      interval: 3s
+      retries: 10
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgres://estuda:estuda@banco:5432/estuda?sslmode=disable
+      AMBIENTE: desenvolvimento
+    ports:
+      - "8080:8080"
+    depends_on:
+      banco:
+        condition: service_healthy
+
+volumes:
+  dados:

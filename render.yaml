@@ -1,0 +1,22 @@
+# Blueprint do Render: New > Blueprint > escolha este repositório.
+# O banco é o PostgreSQL gratuito do Neon (veja o README para a DATABASE_URL).
+services:
+  - type: web
+    name: estuda-junto
+    runtime: docker
+    plan: free
+    region: virginia
+    healthCheckPath: /api/saude
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SEGREDO
+        generateValue: true
+      # Opcional: servidor TURN para quem está em redes que bloqueiam a chamada de vídeo
+      - key: TURN_URLS
+        sync: false
+      - key: TURN_USUARIO
+        sync: false
+      - key: TURN_SENHA
+        sync: false
