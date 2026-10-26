@@ -4,8 +4,7 @@
 
 Salas de estudo online em tempo real. Cada sala tem um relógio Pomodoro sincronizado para todo mundo, lista de quem está online e do que cada um está estudando, chat, quadro de tarefas da turma e chamada de vídeo com compartilhamento de tela. O tempo de foco vira estatística pessoal e ranking semanal.
 
-<!-- Depois de publicar, troque pelo seu link: -->
-<!-- **Ver online:** https://estuda-junto.onrender.com (o plano gratuito pode levar ~1 minuto para acordar) -->
+**Ver online:** https://estuda-junto-0wi3.onrender.com (o plano gratuito pode levar ~1 minuto para acordar)
 
 ## O que tem aqui
 

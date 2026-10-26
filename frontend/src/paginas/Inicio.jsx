@@ -11,11 +11,25 @@ export default function Inicio() {
   const [salas, setSalas] = useState(null)
   const [estatisticas, setEstatisticas] = useState(null)
   const [erro, setErro] = useState(null)
+  const [erroEstatisticas, setErroEstatisticas] = useState(false)
+
+  const carregarEstatisticas = useCallback((tentativa = 0) => {
+    setErroEstatisticas(false)
+    api
+      .eu()
+      .then((r) => setEstatisticas(r.estatisticas))
+      .catch(() => {
+        // o banco gratuito pode estar acordando: tenta mais duas vezes antes de avisar
+        if (tentativa < 2) setTimeout(() => carregarEstatisticas(tentativa + 1), 3000)
+        else setErroEstatisticas(true)
+      })
+  }, [])
 
   const carregar = useCallback(() => {
+    setErro(null)
     api.salas().then(setSalas).catch((e) => setErro(e.message))
-    api.eu().then((r) => setEstatisticas(r.estatisticas)).catch(() => {})
-  }, [])
+    carregarEstatisticas()
+  }, [carregarEstatisticas])
 
   useEffect(() => {
     carregar()
@@ -29,7 +43,18 @@ export default function Inicio() {
       <main className="inicio">
         <section className="inicio__boas-vindas" aria-labelledby="ola">
           <h1 id="ola">Olá, {usuario.nome.split(' ')[0]}</h1>
-          {estatisticas ? <Estatisticas e={estatisticas} /> : <div className="esqueleto" style={{ height: 150 }} />}
+          {estatisticas ? (
+            <Estatisticas e={estatisticas} />
+          ) : erroEstatisticas ? (
+            <p className="erro">
+              Não deu para carregar o seu tempo de estudo.{' '}
+              <button type="button" className="botao-link" onClick={() => carregarEstatisticas()}>
+                Tentar de novo
+              </button>
+            </p>
+          ) : (
+            <div className="esqueleto" style={{ height: 150 }} />
+          )}
         </section>
 
         <section className="inicio__acoes" aria-label="Entrar ou criar uma sala">
