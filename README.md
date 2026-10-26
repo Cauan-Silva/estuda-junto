@@ -13,6 +13,7 @@ Salas de estudo online em tempo real. Cada sala tem um relógio Pomodoro sincron
 - **Quem está estudando:** pessoas online, o que cada uma está estudando e quem está em foco agora
 - **Chat** com limite de mensagens por segundo e **quadro de tarefas** compartilhado (quem criou, quem concluiu)
 - **Chamada de vídeo** com câmera, microfone e **compartilhamento de tela**, para até 6 pessoas
+- Tela em até **1080p e 30 fps** com qualidade automática (desce resolução ou fps quando o processador ou a internet não dão conta e sobe quando sobra folga), codec escolhido pela placa de vídeo (AV1, VP9 ou H.264) e uma pequena reserva de vídeo em quem assiste para a imagem não engasgar
 - **Convite por link:** cada sala tem um código de 6 letras; salas privadas só abrem pelo código
 
 **Fora da sala**

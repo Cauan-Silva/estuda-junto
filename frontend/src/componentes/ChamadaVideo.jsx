@@ -132,6 +132,7 @@ const ChamadaVideo = forwardRef(function ChamadaVideo({ voce, participantes, lim
           espelhar={!midia.tela}
           mudo
           destaque={alguemNaTela?.id === voce.conexaoId}
+          info={midia.tela ? c.infoTela : null}
         />
         {outros.map((p) => {
           const r = remotos.get(p.id)
@@ -146,6 +147,7 @@ const ChamadaVideo = forwardRef(function ChamadaVideo({ voce, participantes, lim
               microfone={p.microfone}
               conectando={!r || (r.estado !== 'connected' && r.estado !== 'completed')}
               destaque={alguemNaTela?.id === p.id}
+              info={p.tela ? c.infoRecebida[p.id] : null}
             />
           )
         })}
@@ -187,7 +189,7 @@ function BotaoMidia({ ligado, destaque, icone, onClick, children }) {
   )
 }
 
-function Quadro({ nome, usuarioId, stream, video, tela, microfone, espelhar, mudo, conectando, destaque }) {
+function Quadro({ nome, usuarioId, stream, video, tela, microfone, espelhar, mudo, conectando, destaque, info }) {
   const elemento = useRef(null)
   useEffect(() => {
     const el = elemento.current
@@ -202,6 +204,11 @@ function Quadro({ nome, usuarioId, stream, video, tela, microfone, espelhar, mud
         <div className="quadro__sem-video">
           <Avatar nome={nome} id={usuarioId} tamanho={64} />
         </div>
+      )}
+      {info && (
+        <span className="quadro__info" title={mudo ? 'O que a sua tela está mandando (ajusta sozinho)' : 'O que está chegando desta tela até você'}>
+          {info}
+        </span>
       )}
       <figcaption>
         <span>{nome}</span>

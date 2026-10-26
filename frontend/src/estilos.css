@@ -1362,6 +1362,22 @@ h2.titulo-secao {
   place-items: center;
 }
 
+.quadro__info {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  max-width: calc(100% - 1rem);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.55);
+  color: #e6efe9;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
 .quadro figcaption {
   position: absolute;
   left: 0.5rem;
